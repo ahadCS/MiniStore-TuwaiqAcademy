@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "6h3SC1EUaww=",
+  "success": true,
+  "projectFilePath": "C:\\mini-store\\mini-store.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Ahad\\.nuget\\packages\\microsoft.entityframeworkcore\\10.0.9\\microsoft.entityframeworkcore.10.0.9.nupkg.sha512",
+    "C:\\Users\\Ahad\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\10.0.9\\microsoft.entityframeworkcore.abstractions.10.0.9.nupkg.sha512",
+    "C:\\Users\\Ahad\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\10.0.9\\microsoft.entityframeworkcore.analyzers.10.0.9.nupkg.sha512"
+  ],
+  "logs": []
+}

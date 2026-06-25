@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - المتجر الإلكتروني</title>
+
+    <script type="importmap"></script>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/mini_store.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #f8fafc;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #4f46e5, #06b6d4) !important;
+            padding: 15px 0;
+        }
+
+        .navbar-brand {
+            font-size: 28px;
+            font-weight: bold;
+            color: white !important;
+        }
+
+        .nav-link {
+            color: white !important;
+            font-size: 18px;
+            margin-left: 15px;
+            transition: .3s;
+        }
+
+        .nav-link:hover {
+            color: #ffd700 !important;
+        }
+
+        main {
+            min-height: 75vh;
+        }
+
+        footer {
+            background: #1e293b;
+            color: white;
+            margin-top: 50px;
+            padding: 30px 0;
+        }
+
+        footer a {
+            color: #38bdf8;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark shadow">
+
+            <div class="container">
+
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                    <i class="fa-solid fa-store"></i>
+                    المتجر الإلكتروني
+                </a>
+
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#mainNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mainNavbar">
+
+                    <ul class="navbar-nav me-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               asp-controller="Home"
+                               asp-action="Index">
+                                <i class="fa-solid fa-house"></i>
+                                الرئيسية
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               asp-controller="Home"
+                               asp-action="Privacy">
+                                <i class="fa-solid fa-circle-info"></i>
+                                من نحن
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </nav>
+    </header>
+
+    <div class="container mt-4">
+
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+
+    </div>
+
+    <footer>
+        <div class="container text-center">
+
+            <h4 class="mb-3">
+                <i class="fa-solid fa-store"></i>
+                المتجر الإلكتروني
+            </h4>
+
+
+
+            <hr class="text-light" />
+
+            <p class="mb-0">
+                © 2026 جميع الحقوق محفوظة
+            </p>
+
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>
