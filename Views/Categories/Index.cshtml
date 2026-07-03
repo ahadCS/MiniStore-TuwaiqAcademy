@@ -1,0 +1,43 @@
+@model List<mini_store.Models.Categories>
+
+<h2>الفئات</h2>
+
+<div class="card p-4 mb-4">
+    <h5>إضافة فئة جديدة</h5>
+    <form asp-action="Create" asp-controller="Categories" method="post" class="row g-2">
+        <div class="col-md-5">
+            <input name="Name" class="form-control" placeholder="اسم الفئة" required />
+        </div>
+        <div class="col-md-5">
+            <input name="Icon" class="form-control" placeholder="fa-solid fa-shirt (اختياري)" />
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-success w-100">إضافة</button>
+        </div>
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>الاسم</th>
+            <th>الأيقونة</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cat in Model)
+        {
+            <tr>
+                <td>@cat.Name</td>
+                <td>@cat.Icon</td>
+                <td>
+                    <form asp-action="Delete" asp-route-id="@cat.Id" method="post" style="display:inline">
+                        <button type="submit" class="btn btn-sm btn-outline-danger"
+                                onclick="return confirm('متأكد من الحذف؟')">حذف</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

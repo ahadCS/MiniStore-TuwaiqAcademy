@@ -1,0 +1,168 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@model List<Product>
+
+@{
+    Layout = "_DashboardLayout";
+    
+    var firstProduct = (Model != null && Model.Any()) ? Model.First() : new Product();
+}
+
+<div class="container mt-4">
+
+    <div class="card">
+        <div class="card-header">
+            <h5>
+                <i class="bi bi-plus-circle-fill"></i> @SharedLocalizer["Add a new product"]
+            </h5>
+        </div>
+
+        <div class="card-body">
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+<div class="mb-3">
+    <label class="form-label">@SharedLocalizer["Select category"]</label>
+    <select class="form-select" name="CategoryId">
+        <option value="">@SharedLocalizer["Select category placeholder"]</option>
+        @foreach (var item in ViewBag.categories)
+        {
+            <option value="@item.Id" selected="@(ViewBag.SubmittedProduct != null && ViewBag.SubmittedProduct.CategoryId == item.Id)">
+                @item.Name
+            </option>
+        }
+    </select>
+    @Html.ValidationMessage("CategoryId", "", new { @class = "text-danger" })
+</div>
+
+<div class="mb-3">
+    <label class="form-label">@SharedLocalizer["Product name"]</label>
+    <input type="text" name="Name" value="@ViewBag.SubmittedProduct?.Name" placeholder="@SharedLocalizer["Product name placeholder"]" class="form-control" />
+    @Html.ValidationMessage("Name", "", new { @class = "text-danger" })
+</div>
+
+<div class="mb-3">
+    <label class="form-label">@SharedLocalizer["Product price"]</label>
+    <input type="number" name="Price" step="0.01" value="@(ViewBag.SubmittedProduct?.Price ?? 0)" placeholder="@SharedLocalizer["Product price placeholder"]" class="form-control" />
+    @Html.ValidationMessage("Price", "", new { @class = "text-danger" })
+</div>
+
+<div class="mb-4">
+    <label class="form-label fw-semibold">@SharedLocalizer["Product image"]</label>
+    <input name="ImageFile" type="file" class="form-control" accept="image/*" />
+    @Html.ValidationMessage("ImageFile", "", new { @class = "text-danger" })
+</div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-success px-4">
+                        @SharedLocalizer["Save product"]
+                    </button>
+
+                    <a asp-action="Index" class="btn btn-light">
+                        @SharedLocalizer["Cancel and return"]
+                    </a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <div class="card mt-5">
+        <div class="card-body">
+
+            <div class="card mb-3 border-0 bg-light p-3 shadow-sm">
+                <form method="get" asp-action="Index" class="row g-3 align-items-end">
+
+                    <div class="col-md-9">
+                        <label class="form-label small fw-bold text-secondary">
+                            @SharedLocalizer["Search by product name"]
+                        </label>
+
+                        <input type="text"
+                               name="searchTerm"
+                               value="@ViewBag.CurrentSearch"
+                               placeholder="@SharedLocalizer["Search placeholder"]"
+                               class="form-control" />
+                    </div>
+
+                    <div class="col-md-3 d-flex gap-2">
+                        <button type="submit" class="btn btn-primary w-100 fw-bold">
+                            <i class="bi bi-search"></i> @SharedLocalizer["Search"]
+                        </button>
+
+                        <a asp-action="Index" class="btn btn-secondary">
+                            @SharedLocalizer["Cancel"]
+                        </a>
+                    </div>
+
+                </form>
+            </div>
+
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>@SharedLocalizer["Product name"]</th>
+                        <th>@SharedLocalizer["Price"]</th>
+                        <th>@SharedLocalizer["Image"]</th>
+                        <th>@SharedLocalizer["Category"]</th>
+                        <th colspan="2">@SharedLocalizer["Actions"]</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @if (Model == null || !Model.Any())
+                    {
+                        <tr>
+                            <td colspan="7" class="text-center">
+                                @SharedLocalizer["No data found"]
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+
+                                <td>@item.Name</td>
+
+                                <td>@item.Price</td>
+
+                                <td>
+                                    <img src="~/Images/@item.Images"
+                                         width="50"
+                                         height="50"
+                                         class="rounded"
+                                         style="object-fit:cover;" />
+                                </td>
+
+                                <td>
+                                    @item.Categories?.Name
+                                </td>
+
+                                <td>
+                                    <a asp-action="Edit"
+                                       asp-route-id="@item.Id">
+                                        <i class="bi bi-pencil-square text-success"></i>
+                                    </a>
+                                </td>
+
+                                <td>
+                                    <a asp-action="Delete"
+                                       asp-route-id="@item.Id"
+                                       onclick="return confirm('@SharedLocalizer["Confirm delete"]')">
+                                        <i class="bi bi-trash3 text-danger"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+</div>
