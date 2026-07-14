@@ -120,42 +120,54 @@
                     }
                     else
                     {
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>@item.Id</td>
+                       @foreach (var item in Model)
+{
+    <tr>
+        <td>@item.Id</td>
 
-                                <td>@item.Name</td>
+        <td>@item.Name</td>
 
-                                <td>@item.Price</td>
+        <td>@item.Price</td>
 
-                                <td>
-                                    <img src="~/Images/@item.Images"
-                                         width="50"
-                                         height="50"
-                                         class="rounded"
-                                         style="object-fit:cover;" />
-                                </td>
+        <td>
+            <img src="~/Images/@item.Images"
+                 width="50"
+                 height="50"
+                 class="rounded"
+                 style="object-fit:cover;" />
+        </td>
 
-                                <td>
-                                    @item.Categories?.Name
-                                </td>
+        <td>
+            @item.Categories?.Name
+        </td>
 
-                                <td>
-                                    <a asp-action="Edit"
-                                       asp-route-id="@item.Id">
-                                        <i class="bi bi-pencil-square text-success"></i>
-                                    </a>
-                                </td>
+        <td>
+            <a asp-action="Edit"
+               asp-route-id="@item.Id">
+                <i class="bi bi-pencil-square text-success"></i>
+            </a>
+        </td>
 
-                                <td>
-                                    <a asp-action="Delete"
-                                       asp-route-id="@item.Id"
-                                       onclick="return confirm('@SharedLocalizer["Confirm delete"]')">
-                                        <i class="bi bi-trash3 text-danger"></i>
-                                    </a>
-                                </td>
-                            </tr>
+        <td>
+            <a asp-action="Delete"
+               asp-route-id="@item.Id"
+               onclick="return confirm('@SharedLocalizer["Confirm delete"]')">
+                <i class="bi bi-trash3 text-danger"></i>
+            </a>
+        </td>
+
+        <td>
+            <form asp-controller="Cart" asp-action="AddToCart" method="post"
+                  class="d-flex align-items-center gap-2">
+                <input type="hidden" name="productId" value="@item.Id" />
+                <input type="number" name="quantity" value="1" min="1"
+                       class="form-control" style="width:80px" />
+                <button type="submit" class="btn btn-success btn-sm">أضف إلى السلة</button>
+                
+            </form>
+        </td>
+    </tr>
+}
                         }
                     }
 

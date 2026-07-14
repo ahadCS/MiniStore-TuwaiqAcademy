@@ -1,0 +1,54 @@
+@model mini_store.Models.ProductDetails
+
+<h2>إضافة تفاصيل منتج جديد</h2>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4">
+
+                <form asp-action="Create" method="post" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+
+                    <div class="mb-3">
+                        <label class="form-label">اختر المنتج</label>
+                        <select name="ProductId" class="form-select">
+                            <option value="">-- اختر المنتج --</option>
+                            @foreach (var product in ViewBag.Products ?? new List<mini_store.Models.Product>())
+                            {
+                                <option value="@product.Id">@product.Name</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">الوصف</label>
+                        <textarea name="Description" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">بلد المنشأ</label>
+                        <input type="text" name="MadeIn" class="form-control" />
+                        <span asp-validation-for="MadeIn" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">الكمية بالمخزن</label>
+                        <input type="number" name="StockQuantity" class="form-control" value="0" />
+                        <span asp-validation-for="StockQuantity" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">صورة المنتج</label>
+                        <input name="ImageFile" type="file" class="form-control" accept="image/*" />
+                    </div>
+
+                    <button type="submit" class="btn btn-success">حفظ</button>
+                    <a asp-action="Index" class="btn btn-light">إلغاء</a>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

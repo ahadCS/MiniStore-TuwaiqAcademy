@@ -1,0 +1,47 @@
+@model List<mini_store.Models.ProductDetails>
+
+<h2>تفاصيل المنتجات</h2>
+<a asp-action="Create" class="btn btn-primary mb-3">+ إضافة تفاصيل منتج</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>الصورة</th>
+            <th>المنتج</th>
+            <th>الوصف</th>
+            <th>بلد المنشأ</th>
+            <th>الكمية بالمخزن</th>
+            <th colspan="2">الإجراءات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.Image))
+                    {
+                        <img src="~/Images/@item.Image" width="50" height="50" style="object-fit:cover;" class="rounded" />
+                    }
+                </td>
+                <td>@item.Product?.Name</td>
+                <td>@item.Description</td>
+                <td>@item.MadeIn</td>
+                <td>@item.StockQuantity</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-success">
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
+                </td>
+                <td>
+                    <form asp-action="Delete" asp-route-id="@item.Id" method="post" style="display:inline">
+                        <button type="submit" class="btn btn-sm btn-outline-danger"
+                                onclick="return confirm('هل أنت متأكد من الحذف؟')">
+                            <i class="bi bi-trash3"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

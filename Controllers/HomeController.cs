@@ -23,14 +23,14 @@ new { Id = 2, Name = "كتب", Icon = "fas fa-book-open" }
     };
 private static dynamic[] _products =
 {
-new { CategoryId = 0, Name = "هاتف ذكي", Price = 2500, Description = "هاتف ذكي بكاميرا عالية الدقة", Image = "phonesmart.jpg" },
-new { CategoryId = 0, Name = "حاسوب محمول", Price = 4500, Description = "حاسوب مخصص للمطورين", Image = "Laptop.jpg" },
-new { CategoryId = 0, Name = " شاشة", Price = 1500, Description = "شاشة مخصصة للمطورين", Image = "monitor.jpg" },
-new { CategoryId = 1, Name = "قميص قطني", Price = 150, Description = "قميص مريح وصيفي", Image = "shirt.jpg" },
-new { CategoryId = 1, Name = "قبعة", Price = 14, Description = "قبعة بيسبول", Image = "cap.png" },
-new { CategoryId = 1, Name = "وشاح شتوي", Price = 150, Description = " وشاح محبوك ", Image = "w.png" },
-new { CategoryId = 2, Name = "كتاب برمجة", Price = 45, Description = "دليل شامل لتعلم البرمجة", Image = "Book.png" },
-new { CategoryId = 2, Name = " برمجةالاردوينو", Price = 90, Description = "دليل شامل لتعلم البرمجة", Image = "Book1.png" }
+new { Id = 1, CategoryId = 0, Name = "هاتف ذكي", Price = 2500, Description = "هاتف ذكي بكاميرا عالية الدقة", Image = "phonesmart.jpg" },
+new { Id = 2, CategoryId = 0, Name = "حاسوب محمول", Price = 4500, Description = "حاسوب مخصص للمطورين", Image = "Laptop.jpg" },
+new { Id = 3, CategoryId = 0, Name = " شاشة", Price = 1500, Description = "شاشة مخصصة للمطورين", Image = "monitor.jpg" },
+new { Id = 4, CategoryId = 1, Name = "قميص قطني", Price = 150, Description = "قميص مريح وصيفي", Image = "shirt.jpg" },
+new { Id = 5, CategoryId = 1, Name = "قبعة", Price = 14, Description = "قبعة بيسبول", Image = "cap.png" },
+new { Id = 6, CategoryId = 1, Name = "وشاح شتوي", Price = 150, Description = " وشاح محبوك ", Image = "w.png" },
+new { Id = 7, CategoryId = 2, Name = "كتاب برمجة", Price = 45, Description = "دليل شامل لتعلم البرمجة", Image = "Book.png" },
+new { Id = 8, CategoryId = 2, Name = " برمجةالاردوينو", Price = 90, Description = "دليل شامل لتعلم البرمجة", Image = "Book1.png" }
 };
 public IActionResult Index()
 {

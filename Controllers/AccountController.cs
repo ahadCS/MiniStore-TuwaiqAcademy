@@ -50,14 +50,12 @@ namespace mini_store.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Logout()
-        {
-            // تنظيف جلسة الدخول وحذف ملف تعريف الارتباط (Cookie)
-            await _signInManager.SignOutAsync();
-            
-            // توجيه المستخدم إلى الصفحة الرئيسية بعد تسجيل الخروج
-            return RedirectToAction("Index", "Home");
-        }
+
+public async Task<IActionResult> Logout()
+{
+    await _signInManager.SignOutAsync();
+    return RedirectToAction("Index", "Home");
+}
        
         [HttpGet]
             public IActionResult Register()

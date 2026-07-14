@@ -1,0 +1,53 @@
+@using mini_store.Models
+@model List<CartItemViewModel>
+
+<h2>سلة المشتريات</h2>
+
+@if (!Model.Any())
+{
+    <p>السلة فارغة حاليا.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>الصورة</th><th>المنتج</th><th>السعر</th>
+                <th>الكمية</th><th>الإجمالي</th><th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.Image))
+                        {
+                            <img src="~/Images/@item.Image" width="50" height="50"
+                                 style="object-fit:cover;" class="rounded" />
+                        }
+                    </td>
+                    <td>@item.ProductName</td>
+                    <td>@item.Price ر.س</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Total ر.س</td>
+                    <td>
+                        <form asp-action="Remove" method="post" style="display:inline">
+                            <input type="hidden" name="productId" value="@item.ProductId" />
+                            <button type="submit" class="btn btn-sm btn-outline-danger"
+                                    onclick="return confirm('حذف المنتج من السلة؟')">
+                                <i class="bi bi-trash3"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4>الإجمالي الكلي: @Model.Sum(i => i.Total) ر.س</h4>
+
+    <form asp-action="Clear" method="post">
+        <button type="submit" class="btn btn-outline-secondary">إفراغ السلة</button>
+    </form>
+}

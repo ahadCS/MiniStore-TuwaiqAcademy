@@ -21,8 +21,13 @@
                         @ViewBag.Products.Price ريال
                      </small>
                      <hr>
-                         <a asp-action=""  class="btn btn-danger p-1">  اضف الى السلة</a>
-                         <a asp-action=""  class="btn btn-success p-1">   العودة الى التسوق    </a>
+                        <form asp-controller="Cart" asp-action="AddToCart" method="post" class="d-inline">
+   <input type="hidden" name="productId" value="@ViewBag.Products.Id" />
+    <input type="number" name="quantity" value="1" min="1" class="form-control d-inline" style="width:80px" />
+    <button type="submit" class="btn btn-danger p-1">اضف الى السلة</button>
+</form>
+
+<a asp-controller="Home" asp-action="Index" class="btn btn-success p-1">العودة الى التسوق</a>
                 </div>
             </div>
         </div>

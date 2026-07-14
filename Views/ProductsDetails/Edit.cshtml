@@ -1,0 +1,59 @@
+@model mini_store.Models.ProductDetails
+
+<h2>تعديل تفاصيل المنتج</h2>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4">
+
+                <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="mb-3">
+                        <label class="form-label">اختر المنتج</label>
+                        <select name="ProductId" class="form-select">
+                            @foreach (var product in ViewBag.Products ?? new List<mini_store.Models.Product>())
+                            {
+                                <option value="@product.Id" selected="@(product.Id == Model.ProductId ? "selected" : null)">
+                                    @product.Name
+                                </option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">الوصف</label>
+                        <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">بلد المنشأ</label>
+                        <input asp-for="MadeIn" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">الكمية بالمخزن</label>
+                        <input asp-for="StockQuantity" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">صورة المنتج (اختياري )</label>
+                        @if (!string.IsNullOrEmpty(Model.Image))
+                        {
+                            <div class="mb-2">
+                                <img src="~/Images/@Model.Image" width="80" style="object-fit:cover;" class="rounded" />
+                            </div>
+                        }
+                        <input name="ImageFile" type="file" class="form-control" accept="image/*" />
+                    </div>
+
+                    <button type="submit" class="btn btn-success">حفظ التعديلات</button>
+                    <a asp-action="Index" class="btn btn-light">إلغاء</a>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

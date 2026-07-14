@@ -13,6 +13,7 @@ namespace mini_store.Data
         }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<ProductDetails> ProductDetails { get; set; }
 
         public DbSet<Categories> Categories { get; set; }
     }
