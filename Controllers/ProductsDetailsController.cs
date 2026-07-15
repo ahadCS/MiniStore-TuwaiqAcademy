@@ -16,14 +16,12 @@ namespace mini_store.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        // GET: عرض كل تفاصيل المنتجات
         public IActionResult Index()
         {
             var productDetails = _context.ProductDetails.Include(p => p.Product).ToList();
             return View(productDetails);
         }
 
-        // GET: عرض صفحة إنشاء تفصيل منتج جديد
         [HttpGet]
         public IActionResult Create()
         {
@@ -31,7 +29,7 @@ namespace mini_store.Controllers
             return View();
         }
 
-        // POST: حفظ تفصيل منتج جديد
+     
         [HttpPost]
         public IActionResult Create(ProductDetails details)
         {
@@ -67,7 +65,7 @@ namespace mini_store.Controllers
             return View(details);
         }
 
-        // GET: عرض صفحة التعديل
+        //  عرض صفحة التعديل
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -78,7 +76,7 @@ namespace mini_store.Controllers
             return View(details);
         }
 
-        // POST: حفظ التعديلات
+        //  حفظ التعديلات
         [HttpPost]
         public IActionResult Edit(ProductDetails details)
         {

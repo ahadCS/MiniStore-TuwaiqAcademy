@@ -1,0 +1,36 @@
+@model List<mini_store.Models.ApiProduct>
+
+@{
+    ViewData["Title"] = "Products from API";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">المنتجات من API</h2>
+
+    <div class="row">
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var product in Model)
+            {
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="@product.Image" class="card-img-top p-3" alt="@product.Title" style="height: 200px; object-fit: contain;">
+                        <div class="card-body d-flex flex-column">
+                            <h6 class="card-title">@product.Title</h6>
+                            <p class="card-text text-muted small">@product.Category</p>
+                            <p class="card-text fw-bold text-success">$@product.Price</p>
+                            <p class="card-text">
+                                <small class="text-warning">⭐ @product.Rating.Rate</small>
+                                <small class="text-muted">(@product.Rating.Count تقييم)</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p class="text-center">لا توجد منتجات لعرضها.</p>
+        }
+    </div>
+</div>

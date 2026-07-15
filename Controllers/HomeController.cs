@@ -37,6 +37,7 @@ public IActionResult Index()
     ViewBag.CatergoriesList = _categories;
     return View();
 }
+
     [Route("list")]
     public IActionResult Products(int id)
     {

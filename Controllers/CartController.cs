@@ -30,13 +30,13 @@ namespace mini_store.Controllers
             HttpContext.Session.SetString(CartSessionKey, JsonSerializer.Serialize(cart));
         }
 
-        // GET: عرض محتويات السلة
+       
         public IActionResult Index()
         {
             return View(GetCart());
         }
 
-        // POST: إضافة منتج إلى السلة
+    
         [HttpPost]
         public IActionResult AddToCart(int productId, int quantity = 1)
         {
@@ -62,7 +62,7 @@ namespace mini_store.Controllers
             return RedirectToAction("Index");
         }
 
-        // POST: حذف منتج من السلة
+        
         [HttpPost]
         public IActionResult Remove(int productId)
         {
@@ -76,7 +76,7 @@ namespace mini_store.Controllers
             return RedirectToAction("Index");
         }
 
-        // POST: إفراغ السلة بالكامل
+      
         [HttpPost]
         public IActionResult Clear()
         {
